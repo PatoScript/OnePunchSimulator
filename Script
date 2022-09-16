@@ -1,0 +1,41 @@
+if game.PlaceId == 10524502174 then
+local OrionLib = loadstring(game:HttpGet(('https://raw.githubusercontent.com/shlexware/Orion/main/source')))()
+local Window = OrionLib:MakeWindow({Name = "One Punch Fighters Simulator!", HidePremium = false, IntroText = "DuckHub", SaveConfig = true, ConfigFolder = "Teste"})
+
+-- Values
+_G.autoTap = true
+
+-- Functions
+
+function autoTap()
+    while _G.autoTap == true do
+		game:GetService("ReplicatedStorage").RemoteEvent:FireServer({{"","Normal"}})
+		wait()
+    end
+end
+
+-- Tabs
+
+local AutoFarmTab = Window:MakeTab({
+	Name = "AutoFarm",
+	Icon = "rbxassetid://4483345998",
+	PremiumOnly = false
+})
+
+-- Toggles
+
+AutoFarmTab:AddToggle({
+	Name = "Auto Tap!",
+	Default = false,
+	Callback = function(Value)
+		_G.autoTap = Value
+        autoTap()
+	end    
+})
+
+
+
+
+
+end
+OrionLib:Init()
