@@ -4,8 +4,16 @@ local Window = OrionLib:MakeWindow({Name = "One Punch Fighters Simulator!", Hide
 
 -- Values
 _G.autoTap = true
+_G.autoHatch = true
 
 -- Functions
+
+function autoHatch()
+	while _G.autoHatch == true do
+	game:GetService("ReplicatedStorage").RemoteEvent:FireServer({{"","Summon",{["Quanty"] = 1,["World"] = "Area1"}}})
+	wait()
+	end
+end
 
 function autoTap()
     while _G.autoTap == true do
@@ -16,20 +24,29 @@ end
 
 -- Tabs
 
-local AutoFarmTab = Window:MakeTab({
-	Name = "AutoFarm",
+local FarmingTab = Window:MakeTab({
+	Name = "Farming",
 	Icon = "rbxassetid://4483345998",
 	PremiumOnly = false
 })
 
 -- Toggles
 
-AutoFarmTab:AddToggle({
+FarmingTab:AddToggle({
 	Name = "Auto Tap!",
 	Default = false,
 	Callback = function(Value)
 		_G.autoTap = Value
         autoTap()
+	end    
+})
+
+FarmingTab:AddToggle({
+	Name = "Auto Hatch!",
+	Default = false,
+	Callback = function(Value)
+		_G.autoHatch = Value
+        autoHatch()
 	end    
 })
 
